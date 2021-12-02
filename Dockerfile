@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
+COPY model /app/
+
 RUN go mod download
 
 COPY *.go ./
