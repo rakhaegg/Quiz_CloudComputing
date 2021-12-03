@@ -18,15 +18,19 @@ import (
 )
 
 func MySql() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:@(api_toko:3306)/dbname?parseTime=true")
+	db, err := sql.Open("mysql", "root:@(localhost:3306)/")
 
+	defer db.Close()
+
+	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS dbname")
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
-	if err := db.Ping(); err != nil {
-		return nil, err
-	}
+	db.Close()
 
+	// if err := db.Ping(); err != nil {
+	// 	return nil, err
+	// }
 	_, table_check := db.Query("SELECT*FROM toko;")
 
 	if table_check == nil {
