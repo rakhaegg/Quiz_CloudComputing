@@ -111,8 +111,14 @@ jobs:
           source: "docker-compose.yml"
           target: "./"
 
-      - name: Build Compose
-        run: docker-compose up -d
+      - name: 'Running Docker Compose'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{env.INSTANCE_IP}}
+          username: opc
+          key: ${{secrets.OCI_KEY_FILE}}
+          script: |
+              docker-compose up -d
         
       - name: Run functional tests
         run:  go test -v 
