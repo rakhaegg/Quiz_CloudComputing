@@ -18,7 +18,7 @@ import (
 )
 
 func MySql() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:@(localhost:3306)/dbname?parseTime=true")
+	db, err := sql.Open("mysql", "root:@(api_toko:3306)/dbname?parseTime=true")
 
 	if err != nil {
 		return nil, err
