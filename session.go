@@ -18,7 +18,7 @@ import (
 )
 
 func MySql() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:@(localhost:3306)/")
+	db, err := sql.Open("mysql", "root:@(toko)/")
 
 	defer db.Close()
 
@@ -27,7 +27,11 @@ func MySql() (*sql.DB, error) {
 		panic(err)
 	}
 	db.Close()
-
+	
+		db, err = sql.Open("mysql", "root:@(localhost:3306)/dbname")
+	if err != nil {
+		panic(err)
+	}
 	// if err := db.Ping(); err != nil {
 	// 	return nil, err
 	// }
