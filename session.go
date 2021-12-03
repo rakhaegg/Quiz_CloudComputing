@@ -13,6 +13,8 @@ import (
 	"encoding/json"
 
 	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func MySql() (*sql.DB, error) {

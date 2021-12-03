@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
-COPY model /app/
+COPY model ./model
 
 RUN go mod download
 
@@ -13,6 +13,6 @@ COPY *.go ./
 
 RUN go build -o /session
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD [ "/session" ]
