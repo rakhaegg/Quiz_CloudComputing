@@ -18,4 +18,21 @@ services:
         condition: on-failure
   toko:
     image: mysql
+    container_name: toko
+    hostname : db
+    networks: 
+      - tokonet
+    ports:
+      - 3306:3306
+      - 8080:8080
+     environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+     vokumes:
+      - toko:/var/lib/mysql
+      
+ volumes:
+  toko:
+ networks:
+  tokonext:
+    driver: bridget
 
