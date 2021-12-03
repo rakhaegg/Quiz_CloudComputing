@@ -26,6 +26,27 @@ func MySql() (*sql.DB, error) {
 	if err := db.Ping(); err != nil {
 		return nil, err
 	}
+
+	_, table_check := db.Query("SELECT*FROM toko;")
+
+	if table_check == nil {
+
+	} else {
+		query := `
+            CREATE TABLE toko (
+                id INT ,
+                restaurant_id TEXT NOT NULL,
+                name TEXT NOT NULL,
+                description TEXT NOT NULL,
+				pictureID TEXT NOT NULL,
+                city TEXT NOT NULL,
+                rating TEXT NOT NULL,
+                PRIMARY KEY (id)
+            );`
+		if _, err := db.Exec(query); err != nil {
+			log.Fatal(err)
+		}
+	}
 	return db, nil
 
 }
