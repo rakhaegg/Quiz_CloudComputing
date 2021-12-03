@@ -32,4 +32,4 @@ jobs:
           tags: api_toko_toko:latest, ${{ github.repository }}:latest
 
       - name: Run functional tests
-        run:  go test -v ./...
+        run:  go test -v 
