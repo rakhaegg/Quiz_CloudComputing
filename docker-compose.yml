@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    depends_on:
+      - toko
+    build:
+      context: .
+    container_name: rest-server
+    hostname: rest-server
+    networks:
+      - tokonet
+    ports:
+      - 80:80
+      - 8081:8081
+    deploy:
+      restart_policy:
+        condition: on-failure
+  toko:
+    image: mysql
+
