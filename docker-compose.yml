@@ -19,20 +19,21 @@ services:
   toko:
     image: mysql
     container_name: toko
-    hostname : db
-    networks: 
+    hostname: db
+    networks:
       - tokonet
     ports:
       - 3306:3306
       - 8080:8080
-     environment:
+    environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-     vokumes:
+    volumes:
       - toko:/var/lib/mysql
-      
- volumes:
+
+volumes:
   toko:
- networks:
-  tokonext:
-    driver: bridget
+
+networks:
+  tokonet:
+    driver: bridge
 
