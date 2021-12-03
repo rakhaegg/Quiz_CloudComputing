@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bytes"
+	
 	"net/http"
 	"net/http/httptest"
 	"testing"
