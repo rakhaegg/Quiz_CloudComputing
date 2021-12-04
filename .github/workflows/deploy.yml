@@ -64,7 +64,7 @@ jobs:
             --display-name cicd-demo \
             --query "data [0].id" \
             --raw-output \
-          )" >> $GITHUB_EN
+          )" >> $GITHUB_ENV
             
       - name: 'Create Instance'
         if: ${{!env.INSTANCE_OCID}}
