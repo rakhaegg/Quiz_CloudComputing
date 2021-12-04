@@ -108,7 +108,7 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
-          source: "docker.compose.yml"
+          source: "docker-compose.yml"
           target: "./"
 
       - name: 'Running Docker Compose'
@@ -118,6 +118,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
           script: |
+            docker pull rakhaeg/toko
+            docker pull rakhaeg/api
             sudo docker-compose up -d --build
         
       - name: Run functional tests
