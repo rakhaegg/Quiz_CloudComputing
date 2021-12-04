@@ -116,7 +116,7 @@ jobs:
         with:
           host: ${{env.INSTANCE_IP}}
           username: ubuntu
-          key: ${{secrets.OCI_KEY_FILE}}
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
           script: |
               sudo docker-compose up -d
         
