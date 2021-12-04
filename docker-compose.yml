@@ -5,7 +5,7 @@ services:
     depends_on:
       - toko
     build:
-      context: .
+    image : rakhaeg/api
     container_name: rest-server
     hostname: rest-server
     networks:
@@ -17,7 +17,7 @@ services:
       restart_policy:
         condition: on-failure
   toko:
-    image: mysql
+    image: rakhaeg/toko
     container_name: toko
     hostname: db
     networks:
