@@ -4,7 +4,6 @@ services:
   api:
     depends_on:
       - toko
-    build:
     image : rakhaeg/api
     container_name: rest-server
     hostname: rest-server
