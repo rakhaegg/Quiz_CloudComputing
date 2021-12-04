@@ -30,7 +30,7 @@ jobs:
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/toko .
           docker push ${{ secrets.DOCKERHUB_USERNAME}}/toko
           
-      - name: 'Write config'
+      - name: 'Write Config & Key Files'
         run: |
           mkdir ~/.oci
           echo "[DEFAULT]" >> ~/.oci/config
@@ -41,7 +41,8 @@ jobs:
           echo "tenancy=${{secrets.OCI_TENANCY_OCID}}" >> ~/.oci/config
           echo "key_file=~/.oci/key.pem" >> ~/.oci/config
           echo "${{secrets.OCI_KEY_FILE}}" >> ~/.oci/key.pem
-          
+          echo "${{secrets.VM_SSH_PUB_KEY}}" >> /home/runner/.oci/id_vm.pub
+
       - name: 'Install OCI CLI'
         run: |
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
@@ -49,12 +50,12 @@ jobs:
           ./install.sh --accept-all-defaults
           echo "/home/runner/bin" >> $GITHUB_PATH
           exec -l $SHELL
-          
+
       - name: 'Fix Config File Permissions'
         run: |
           oci setup repair-file-permissions --file /home/runner/.oci/config
           oci setup repair-file-permissions --file /home/runner/.oci/key.pem
-          
+
       - name: 'Check Existing Instance'
         run: |
           echo "INSTANCE_OCID=$( \
@@ -65,7 +66,7 @@ jobs:
             --query "data [0].id" \
             --raw-output \
           )" >> $GITHUB_ENV
-            
+
       - name: 'Create Instance'
         if: ${{!env.INSTANCE_OCID}}
         run: |
@@ -84,7 +85,7 @@ jobs:
               --query "data.id" \
               --raw-output \
           )" >> $GITHUB_ENV
-            
+
       - name: 'Get Instance IP'
         run: |
           echo "INSTANCE_IP=$( \
