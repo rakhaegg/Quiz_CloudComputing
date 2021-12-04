@@ -115,10 +115,10 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{env.INSTANCE_IP}}
-          username: opc
+          username: ubuntu
           key: ${{secrets.OCI_KEY_FILE}}
           script: |
-              docker-compose up -d
+              sudo docker-compose up -d
         
       - name: Run functional tests
         run:  go test -v 
