@@ -17,7 +17,7 @@ services:
       restart_policy:
         condition: on-failure
   toko:
-    image: rakhaeg/toko
+    image: mysql
     container_name: toko
     hostname: db
     networks:
