@@ -27,8 +27,8 @@ jobs:
 
       - name: 'Build and push'
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/toko .
-          docker push ${{ secrets.DOCKERHUB_USERNAME}}/toko
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/api .
+          docker push ${{ secrets.DOCKERHUB_USERNAME}}/api
           
       - name: 'Write Config & Key Files'
         run: |
