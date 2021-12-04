@@ -118,8 +118,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
           script: |
-            docker pull rakhaeg/toko
-            docker pull rakhaeg/api
+            sudo docker pull rakhaeg/toko:latest
+            sudo docker pull rakhaeg/api:latest
             sudo docker-compose up -d --build
         
       - name: Run functional tests
