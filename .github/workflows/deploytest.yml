@@ -108,7 +108,7 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
-          source: "docker-compose.yml"
+          source: "rakhaeg/api_toko"
           target: "./"
 
       - name: 'Running Docker Compose'
@@ -118,9 +118,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
           script: |
-            sudo apt-get -y update
-            sudo apt-get -y install python3-pip
-            sudo pip3 install docker-compose
             sudo docker-compose up -d --build
         
       - name: Run functional tests
