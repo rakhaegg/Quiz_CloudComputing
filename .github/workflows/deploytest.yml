@@ -108,7 +108,7 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
-          source: "rakhaeg/api_toko"
+          source: "docker.compose.yml"
           target: "./"
 
       - name: 'Running Docker Compose'
