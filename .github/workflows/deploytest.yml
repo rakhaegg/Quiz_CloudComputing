@@ -118,10 +118,14 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY}}
           script: |
-              sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
-              docker-compose --version
-              sudo docker-compose up -d
+            sudo yum install -y yum-utils
+            sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+            sudo yum install -y docker-ce docker-ce-cli containerd.io
+            sudo systemctl restart docker
+            sudo firewall-cmd --zone=docker --add-service=http --permanent
+            sudo firewall-cmd --reload
+            sudo pip3 install docker-compose
+            sudo /usr/local/bin/docker-compose up -d
         
       - name: Run functional tests
         run:  go test -v 
